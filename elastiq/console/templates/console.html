@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic-ui/semantic.css' %}">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="{% static 'semantic-ui/semantic.js' %}"></script>
+    <style type="text/css">
+        body {
+            background-color: #DADADA;
+        }
+
+        body > .grid {
+            height: 100%;
+        }
+
+        .image {
+            margin-top: -100px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ui inverted menu">
+    <a class="header item" href="/">elastic</a>
+
+    <div class="ui dropdown item" tabindex="0">
+        Dropdown
+        <i class="dropdown icon"></i>
+
+        <div class="menu transition hidden" tabindex="-1">
+            <div class="item">Action</div>
+            <div class="item">Another Action</div>
+            <div class="item">Something else here</div>
+            <div class="divider"></div>
+            <div class="item">Separated Link</div>
+            <div class="divider"></div>
+            <div class="item">One more separated link</div>
+        </div>
+    </div>
+    <div class="right menu">
+        <a class="item" href="/console/logout/">Logout</a>
+    </div>
+</div>
+
+</body>
+</html>
