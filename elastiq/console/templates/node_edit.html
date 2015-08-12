@@ -89,18 +89,20 @@
                 <div class="content">
                     <div class="header">Access</div>
                     <div class="ui divided  list">
-                         <div class="ui labeled input">
+                         <div class="ui labeled action input">
                             <div style="width: 100px" class="ui label">
                                 Elasticsearch
                             </div>
-                            <input style="width: 400px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io:9200/">
+                            <input style="width: 326px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io:9200/">
+                             <a class="ui button" href="http://{{node.username}}:{{node.password}}@{{ node.name }}.client.elastiq.io:9200/" target="_blank">View</a>
                         </div>
                         <br><br>
-                        <div class="ui labeled input">
+                        <div class="ui labeled action input">
                             <div style="width: 100px" class="ui label">
                                 Kibana
                             </div>
-                            <input style="width: 400px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io/">
+                            <input style="width: 326px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io/">
+                            <a class="ui button" href="http://{{node.username}}:{{node.password}}@{{ node.name }}.client.elastiq.io/" target="_blank">View</a>
                         </div>
                         <br><br>
 
