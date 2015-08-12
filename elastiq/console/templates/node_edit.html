@@ -87,32 +87,9 @@
 
             <div class="ui fluid card">
                 <div class="content">
-                    <div class="header">Credentials</div>
-                    <div class="ui divided  list">
-                        <div class="ui labeled input">
-                            <div style="width: 100px" class="ui label">
-                                Username
-                            </div>
-                            <input type="text" readonly value="{{ node.username }}">
-                        </div>
-
-                        <br><br>
-
-                        <div class="ui labeled input">
-                            <div style="width: 100px" class="ui label">
-                                Password
-                            </div>
-                            <input type="text" readonly value="{{ node.password }}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ui fluid card">
-                <div class="content">
                     <div class="header">Access</div>
                     <div class="ui divided  list">
-                        <div class="ui labeled input">
+                         <div class="ui labeled input">
                             <div style="width: 100px" class="ui label">
                                 Elasticsearch
                             </div>
@@ -125,9 +102,30 @@
                             </div>
                             <input style="width: 400px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io/">
                         </div>
+                        <br><br>
+
+                        <div class="ui labeled input">
+                            <div style="width: 100px" class="ui label">
+                                Username
+                            </div>
+                            <input style="width: 400px" type="text" readonly value="{{ node.username }}">
+                        </div>
+
+                        <br><br>
+
+                        <div class="ui labeled input">
+                            <div style="width: 100px" class="ui label">
+                                Password
+                            </div>
+                            <input style="width: 400px" type="text" readonly value="{{ node.password }}">
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>
+
 
             <div class="ui message">
                 The node reconfiguration may take up to 2 minutes.
