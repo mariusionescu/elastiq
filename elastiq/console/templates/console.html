@@ -1,54 +1,54 @@
-{% load staticfiles %}
+{% extends "console_base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="{% static 'semantic-ui/semantic.css' %}">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-    <script src="{% static 'semantic-ui/semantic.js' %}"></script>
-    <style type="text/css">
-        body {
-            background-color: #DADADA;
-        }
+{% block content %}
 
-        body > .grid {
-            height: 100%;
-        }
+{% if messages %}
+{% for message in messages %}
+<div class="ui message">{{ message | safe}}</div>
+{% endfor %}
+{% endif %}
+<table class="ui compact celled table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Memory (GB)</th>
+        <th>CPU</th>
+        <th class="ui center aligned">Actions</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for node in nodes %}
+    <tr>
+        <td>{{ node.name }}</td>
+        <td>{{ node.memory }}</td>
+        <td>{{ node.cpu }}</td>
+        <td>
+            <div class="ui center aligned ">
+                <a class="ui center floated small teal labeled  button" href="/console/node/{{ node.id }}/">
+                    Edit
+                </a>
+            </div>
+        </td>
+        <td class="ui center aligned">
+            {% if node.status = 'pending' %}
+                <i class="asterisk loading icon"></i>
+            {% else %}
+                <i class="check circle icon"></i>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot class="full-width">
+    <tr>
+        <th colspan="6">
+            <a class="ui right floated large teal labeled  button" href="/console/node/add/">
+                Add Node
+            </a>
+        </th>
+    </tr>
+    </tfoot>
+</table>
 
-        .image {
-            margin-top: -100px;
-        }
-
-        .column {
-            max-width: 450px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="ui inverted menu">
-    <a class="header item" href="/">elastic</a>
-
-    <div class="ui dropdown item" tabindex="0">
-        Dropdown
-        <i class="dropdown icon"></i>
-
-        <div class="menu transition hidden" tabindex="-1">
-            <div class="item">Action</div>
-            <div class="item">Another Action</div>
-            <div class="item">Something else here</div>
-            <div class="divider"></div>
-            <div class="item">Separated Link</div>
-            <div class="divider"></div>
-            <div class="item">One more separated link</div>
-        </div>
-    </div>
-    <div class="right menu">
-        <a class="item" href="/console/logout/">Logout</a>
-    </div>
-</div>
-
-</body>
-</html>
+{% endblock content %}

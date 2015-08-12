@@ -1,0 +1,141 @@
+{% extends "console_base.html" %}
+
+{% block content %}
+
+
+<div class="ui left aligned container">
+
+    <h2 class="ui header">
+        <i class="settings icon"></i>
+        <div class="content">
+            Edit node
+            <div class="sub header">{{ node.name }}</div>
+        </div>
+</h2>
+
+
+    {% if error %}
+    <div class="ui left aligned container">
+        <div class="ui relaxed divided list error message">
+            {% for field in form %}
+            {% if field.errors %}
+            <div class="item">
+                <div class="content">
+                    <div class="header"> {{ field.name }}</div>
+                    {% for error in field.errors %}
+                    <div class="description">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+    <div class="ui middle aligned grid">
+        <div class="column">
+
+            {% if message %}
+            <div class="ui error message">{{ message }}</div>
+
+            {% endif %}
+            <form class="ui form" method="POST">
+                {% csrf_token %}
+                <div class="ui left aligned stacked segment">
+
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label>Memory (GB)</label>
+
+                            <div class="ui left  input">
+                                {{ form.memory }}
+                            </div>
+                        </div>
+                        <div class="eight wide field">
+                            <label>CPU</label>
+
+                            <div class="ui left input">
+                                {{ form.cpu }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui right aligned container">
+                        <div class="ui buttons">
+                            <a class="ui button" href="/console/">Cancel</a>
+
+                            <div class="or"></div>
+                            <input class="ui teal submit button" type="submit" value="Save"/>
+                        </div>
+
+                        <a class="ui floated right red  button" onclick="return confirm_delete('{{node.name}}')"
+                           href="/console/node/delete/{{ node.id }}/">
+                            Remove
+                        </a>
+
+
+                    </div>
+                </div>
+
+                <div class="ui error message"></div>
+
+                <input type="hidden" name="name" value="{{ node.name }}">
+
+            </form>
+
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="header">Credentials</div>
+                    <div class="ui divided  list">
+                        <div class="ui labeled input">
+                            <div style="width: 100px" class="ui label">
+                                Username
+                            </div>
+                            <input type="text" readonly value="{{ node.username }}">
+                        </div>
+
+                        <br><br>
+
+                        <div class="ui labeled input">
+                            <div style="width: 100px" class="ui label">
+                                Password
+                            </div>
+                            <input type="text" readonly value="{{ node.password }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui fluid card">
+                <div class="content">
+                    <div class="header">Access</div>
+                    <div class="ui divided  list">
+                        <div class="ui labeled input">
+                            <div style="width: 100px" class="ui label">
+                                Elasticsearch
+                            </div>
+                            <input style="width: 400px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io:9200/">
+                        </div>
+                        <br><br>
+                        <div class="ui labeled input">
+                            <div style="width: 100px" class="ui label">
+                                Kibana
+                            </div>
+                            <input style="width: 400px" type="text" readonly value="http://{{ node.name }}.client.elastiq.io/">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui message">
+                The node reconfiguration may take up to 2 minutes.
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock content %}

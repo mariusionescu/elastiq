@@ -37,7 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website'
+    'website',
+    'console',
+    'deploy'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,3 +108,6 @@ STATICFILES_DIRS = (
     BASE_DIR + '/website/static',
     BASE_DIR + '/console/static'
 )
+
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

@@ -16,11 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import RedirectView
-from console.views import LoginView, ConsoleView, LogoutView
+from console.views import LoginView, ConsoleView, LogoutView, NodeEditView, NodeAddView, NodeDeleteView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^login/', LoginView.as_view()),
     url(r'^$', login_required(ConsoleView.as_view(), login_url='/console/login/')),
+
+    url(r'^node/delete/(.*)/', login_required(NodeDeleteView.as_view(), login_url='/console/login/')),
+    url(r'^node/add/', login_required(NodeAddView.as_view(), login_url='/console/login/')),
+    url(r'^node/(.*)/', login_required(NodeEditView.as_view(), login_url='/console/login/')),
+
     url(r'^logout/', LogoutView.as_view())
 ]

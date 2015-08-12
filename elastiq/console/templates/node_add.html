@@ -1,0 +1,92 @@
+{% extends "console_base.html" %}
+
+{% block content %}
+
+
+<div class="ui left aligned container">
+
+    <h1 clsass="ui header">
+        Add new node
+    </h1>
+
+
+    {% if error %}
+<div class="ui left aligned container">
+    <div class="ui relaxed divided list error message">
+        {% for field in form %}
+        {% if field.errors %}
+        <div class="item">
+            <div class="content">
+                <div class="header"> {{ field.name }}</div>
+                {% for error in field.errors %}
+                <div class="description">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+
+
+
+    <div class="ui middle aligned grid">
+        <div class="column">
+
+            {% if message %}
+            <div class="ui error message">{{ message }}</div>
+
+            {% endif %}
+            <form class="ui form" method="POST">
+                {% csrf_token %}
+                <div class="ui left aligned stacked segment">
+                    <div class="field">
+                        <label>Name</label>
+
+                        <div class="ui left  input">
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label>Memory (GB)</label>
+
+                            <div class="ui left  input">
+                                {{ form.memory }}
+                            </div>
+                        </div>
+                        <div class="eight wide field">
+                            <label>CPU</label>
+
+                            <div class="ui left input">
+                                {{ form.cpu }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui center aligned container">
+                        <div class="ui buttons">
+                            <a class="ui button" href="/console/">Cancel</a>
+
+                            <div class="or"></div>
+                            <input class="ui teal submit button" type="submit" value="Save"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui error message"></div>
+
+            </form>
+
+            <div class="ui message">
+                The node creation may take up to 2 minutes.
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock content %}

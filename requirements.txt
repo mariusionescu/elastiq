@@ -1,4 +1,4 @@
 django
 celery
 django-celery
-fabric
+paramiko

@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.7/semantic.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.7/semantic.min.js"></script>
+    <script src="{% static 'js/console.js' %}"></script>
+    <style type="text/css">
+        body {
+            background-color: #DADADA;
+        }
+
+        body > .grid {
+            height: 100%;
+        }
+
+        .ui.modal {
+            width: 400px;
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ui inverted menu">
+    <a class="header item" href="/">elastiq.io</a>
+
+
+    <div class="right menu">
+        <a class="item" href="/console/logout/">Logout</a>
+    </div>
+</div>
+
+<div class="ui one column stackable center aligned page grid">
+    <div class="column twelve wide">
+
+        {% block content %}{% endblock content %}
+
+    </div>
+
+</div>
+</body>
+</html>
