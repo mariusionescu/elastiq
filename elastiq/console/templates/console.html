@@ -18,14 +18,20 @@
         <th>Name</th>
         <th>Memory (GB)</th>
         <th>CPU</th>
-        <th class="ui center aligned">Actions</th>
         <th></th>
     </tr>
     </thead>
     <tbody>
     {% for node in nodes %}
     <tr>
-        <td>{{ node.name }}</td>
+        <td>
+            {% if node.status = 'pending' %}
+                <i class="asterisk loading icon"></i>
+            {% else %}
+                <i class="check circle icon"></i>
+            {% endif %}
+            {{ node.name }}
+        </td>
         <td>{{ node.memory }}</td>
         <td>{{ node.cpu }}</td>
         <td>
@@ -35,13 +41,7 @@
                 </a>
             </div>
         </td>
-        <td class="ui center aligned">
-            {% if node.status = 'pending' %}
-                <i class="asterisk loading icon"></i>
-            {% else %}
-                <i class="check circle icon"></i>
-            {% endif %}
-        </td>
+
     </tr>
     {% endfor %}
     </tbody>
